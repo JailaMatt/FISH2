@@ -1,13 +1,32 @@
+xCoordinate = 50
+yCoordinate = 20
+speed = 10
+ySpeed = 20
+fishSize = 30
+
 def setup():
     size(400, 400)
     img = loadImage("undertheSea.jpg")
     image(img, 0, 0)
-    fish(300, 300, 50, 20)
-    fish(random(200, 330), random(100, 10), 50, 20)
-    fish(random(300, 190), random(200, 80), 50, 20)
-    fish(random(240, 250), random(100, 80), 50, 20)
-    fish(random(200, 300), random(500, 100), 50, 20)
+    fish(random(400), random(400), random(40, 60), random(10, 40))
+    fish(random(400), random(400), random(40, 60), random(10, 40))
+    fish(random(400), random(400), random(40, 60), random(10, 40))
+    fish(random(400), random(400), random(40, 60), random(10, 40))
+    fish(random(400), random(400), random(40, 60), random(10, 40))
     
-def fish(xMiddle, yMiddle, oWeight, oHeight):
+def draw():
+    global xCoordinate, speed, ySpeed, fishSize, yCoordinate
+    leftTopBoundary = fishSize / 2
+    rightBottomBoundary = 400 - fishSize / 2    
+    if xCoordinate >= rightBottomBoundary or xCoordinate <= leftTopBoundary:
+        speed = -speed
+    if yCoordinate >= rightBottomBoundary or yCoordinate <= leftTopBoundary:
+        ySpeed = -ySpeed
+    yCoordinate += ySpeed
+    xCoordinate += speed
+    fill(255, 25, 100)
+    fishSize( xCoordinate, yCoordinate, fishSize, fishSize)
+    
+def fish(xMiddle, yMiddle, oWidth, oHeight):
     fill(random(125), random(155), random(79))
-    ellipse(xMiddle+50, yMiddle+20, oWeight/2, oHeight/2)
+    ellipse(xMiddle, yMiddle, oWidth, oHeight)
